@@ -1,0 +1,21 @@
+div{
+    text-align: center;
+    align-items: center;
+}
+
+.class{
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.title{
+    font-size: 80px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.div-title{
+    display: grid;
+    text-align: center;
+    align-items: center;
+    height: 50vh;
+}
