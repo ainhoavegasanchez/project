@@ -1,10 +1,9 @@
 <?php
-
 header('Access-Control-Allow-Origin: *'); 
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
-require '../Conexion/ConexionPdoEnv.php';
-$conexion = new ConexionPdoEnv();
+require '../Conexion/ConexionPdo.php';
+$conexion = new ConexionPdo();
 $pdo = $conexion::conectar();
 
 $stmt = $pdo->prepare("select nombre, descripcion, foto,id_catego, precio from PRODUCTO where id=:id");

@@ -1,4 +1,5 @@
-
+CREATE DATABASE MENU  ;
+USE MENU;
 
 CREATE TABLE  USUARIO(
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -16,7 +17,6 @@ create table PEDIDO(
     id INTEGER AUTO_INCREMENT PRIMARY KEY, 
     fecha TIMESTAMP,
     id_usuario INTEGER,
-    total FLOAT,
     FOREIGN KEY (id_usuario) REFERENCES USUARIO(id)
 );
 
@@ -36,6 +36,7 @@ CREATE TABLE DETALLE_PEDIDO (
     id_pedido INTEGER NOT NULL,
     id_producto INTEGER NOT NULL,
     cantidad INTEGER,
+    total FLOAT,
     FOREIGN KEY (id_pedido) REFERENCES PEDIDO(id),
     FOREIGN KEY (id_producto) REFERENCES PRODUCTO(id)
 );

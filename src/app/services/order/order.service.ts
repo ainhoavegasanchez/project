@@ -3,28 +3,44 @@ import { Injectable } from '@angular/core';
 import { Order } from '../../interfaces/Order';
 import { Product } from '../../interfaces/Product';
 import { Observable } from 'rxjs';
+import { UserService } from '../user/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
 
-  baseUrl = "http://localhost/php/order";
+  private _order: any;
+  baseUrl = "http://vps-65482c69.vps.ovh.net/php/orders";
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private userService: UserService
+  ) { }
 
-  insertOrder(order:Order){
-    this.http.post(`${this.baseUrl}/insertOrder.php`, order);
+  get OrderGet(): any {
+    return this._order;
+  }
+
+
+  set orderSet(order: any) {
+    this._order = order;
+  }
+
+  insertOrder() {
+    const user = this.userService.UserGet;
+    const order = this.http.post(`${this.baseUrl}/insertOrder.php`, JSON.stringify(user));
+    return order;
   };
-  
-  getOrder(id:number):Observable<Order>{
+
+  getOrders(id: number): Observable<Order> {
     return this.http.get<Order>(`${this.baseUrl}/getOrder.php?id_usuario=${id}`);
   };
 
-  insertDetailOrder(id_pedido:number, id_usuario:number, product:Product, cantidad:number):void{
+  insertDetailOrder(id_pedido: number, id_usuario: number, product: Product, cantidad: number): void {
     this.http.post(`${this.baseUrl}/insertDetailOrder.php`, [id_pedido, id_usuario, product, cantidad]);
   }
-  updateDetailOrder(id:number, cantidad:number):void{
+  updateDetailOrder(id: number, cantidad: number): void {
     this.http.post(`${this.baseUrl}/updateDetailOrder.php`, [id, cantidad]);
   }
 }

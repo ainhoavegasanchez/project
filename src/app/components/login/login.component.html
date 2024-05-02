@@ -1,29 +1,28 @@
-<div class="container">
 
-  <!-- FORMULAIRE DE CONNEXION -->
-  <div class="card">
-    <h2>Login Form</h2>
-    <div class="login_register">
-      <a [routerLink]="'/login'"class="login" target="blank">Login</a>
-      <a [routerLink]="'/registrer'" class="register" target="blank">Signup</a>
+
+<section class="signup">
+  <div class="container">
+      <div class="signup-content">
+          <div class="signup-form">
+              <h2 class="form-title">Sign up</h2>
+              <form method="POST" class="register-form" id="register-form">
+                  <div class="form-group">
+                      <label for="email"><i class="zmdi zmdi-email"></i></label>
+                      <input type="email" name="email" id="email" [(ngModel)]="user.email" placeholder="Your Email"/>
+                  </div>
+                  <div class="form-group">
+                      <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                      <input type="password" name="pass" id="pass" [(ngModel)]="user.pass" placeholder="Password"/>
+                  </div>
+                  <div class="form-group form-button">
+                      <input type="submit" name="signup" id="signup" class="form-submit" (click)="selectUser()" value="Register"/>
+                  </div>
+              </form>
+          </div>
+          <div class="signup-image">
+              <figure></figure>
+              <a class="signup-image-link" [routerLink]="'/registrer'">You no have account?</a>
+          </div>
+      </div>
   </div>
-    <!-- FORMULAIRE -->
-    <form class="form">
-      <input type="email" name="email" [(ngModel)]="user.email" placeholder="Email Adress" class="email">
-      <input type="password" name="pass" [(ngModel)]="user.pass" placeholder="password" class="pass">
-    </form>
-
-    <!-- MOT DE PASSE OUBLIE ? -->
-    <a href="#" class="fp">Forgot password?</a>
-
-    <!-- BOUTTON LOGIN -->
-    <button type="button" class="login_btn" (click)="selectUser()">Login</button>
-
-    <!-- PIED DE LA CARD -->
-    <div class="footer_card">
-      <p>Not a member?</p>
-      <a [routerLink]="'/registrer'">Singup now</a>
-    </div>
-  </div>
-
-</div>
+</section>

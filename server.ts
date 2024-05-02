@@ -4,7 +4,7 @@ import express from 'express';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, resolve } from 'node:path';
 import bootstrap from './src/main.server';
-
+import cors from 'cors';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
   const server = express();
@@ -24,6 +24,13 @@ export function app(): express.Express {
     maxAge: '1y'
   }));
 
+
+  const corsOptions = {
+    origin: '*', 
+    credentials: true, 
+    optionsSuccessStatus: 200, 
+ };
+ server.use(cors(corsOptions));
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;

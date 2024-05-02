@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from '../../interfaces/User';
+
 
 
 @Injectable({
@@ -9,19 +8,26 @@ import { User } from '../../interfaces/User';
 })
 export class UserService {
 
+  private _user!: any;
   constructor(private http: HttpClient) { }
-  baseUrl = "http://localhost/php/users";
+  baseUrl = "http://vps-65482c69.vps.ovh.net/php/users";
 
-  insertUser(formData: FormData) {
-    return this.http.post(`${this.baseUrl}/insertUser.php`, formData);
+  get UserGet(): any {
+    return this._user;
+  }
 
-  };
 
-  getUser(email: string, pass: string) {
-    const formData = new FormData();
-    formData.append('email', email);
-    formData.append('pass', pass);
-    return this.http.post(`${this.baseUrl}/getUser.php`, formData);
+  set userSet(user: any) {
+    this._user = user;
+  }
+
+  insertUser(user: any) {
+    return this.http.post(`${this.baseUrl}/insertUser.php`, user);;
+  }
+
+  getUser(user: any) {
+     const userReturn = this.http.post(`${this.baseUrl}/getUser.php`, JSON.stringify(user));
+      return userReturn;
   };
 
 

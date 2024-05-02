@@ -1,9 +1,10 @@
 
-import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { PortadaComponent } from '../portada/portada.component';
+import { OrderService } from '../../services/order/order.service';
 
 
 @Component({
@@ -14,6 +15,16 @@ import { PortadaComponent } from '../portada/portada.component';
     styleUrl: './inicio.component.sass', 
     schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class InicioComponent {
+export class InicioComponent implements OnInit {
+
+    constructor(
+       
+    ){}
+    ngOnInit(): void {
+       
+    }
+
+
+   
 
 }

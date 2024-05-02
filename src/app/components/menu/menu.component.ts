@@ -5,6 +5,8 @@ import { ProductService } from '../../services/product/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductComponent } from './product/product.component';
 import { ListComponent } from './list/list.component';
+import { OrderService } from '../../services/order/order.service';
+import { OrderDetailService } from '../../services/order_detail/order-detail.service';
 
 @Component({
   selector: 'app-menu',
@@ -16,11 +18,15 @@ import { ListComponent } from './list/list.component';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private orderDetailService: OrderDetailService
+  ) { }
 
   productList: Product[] = [];
   ngOnInit() {
     this.recuperarTodos();
+
   }
 
   recuperarTodos() {
@@ -36,13 +42,13 @@ export class MenuComponent implements OnInit {
     });
   }
 
-  MenuList:Product[]=[];
-  addProductList(id:number){
-     this.productService.getProduct(id).subscribe(
-      (product:Product)=>{
-        console.log(product);
+  MenuList: Product[] = [];
+  addProductList(id: number) {
+    this.productService.getProduct(id).subscribe(
+      (product: Product) => {
         this.MenuList.push(product);
       }
     );
+    this.orderDetailService.insertOrderDetail(1).subscribe();
   }
 }

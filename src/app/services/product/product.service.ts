@@ -8,9 +8,18 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class ProductService {
-  productData:Product[]=[];
+  private _product!: any;
+ 
+  get productGet(): any {
+    return this._product;
+  }
 
-  baseUrl = "http://localhost/php/products";
+
+  set productSet(product: any) {
+    this._product = product;
+  }
+
+  baseUrl = "http://vps-65482c69.vps.ovh.net/php/products";
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +31,7 @@ export class ProductService {
     return this.http.get(`${this.baseUrl}/insertProduct.php`);
   }
 
-  getProduct(id:number):Observable<Product>{
+  getProduct(id:number){
     return this.http.get<Product>(`${this.baseUrl}/getProduct.php?id=${id}`);
   }
 }

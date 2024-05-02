@@ -6,7 +6,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterModule, RouterOutlet],
   templateUrl: './portada.component.html',
-  styleUrl: './portada.component.scss'
+  styleUrls: ['./portada.component.scss', './icons.css']
 })
 export class PortadaComponent {
 

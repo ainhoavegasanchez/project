@@ -17,11 +17,7 @@ export class AppComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    //TODO:
-    //tenemos que hacerr que solo se inserten una vez
-    /*this.productService.insertAllProducts().subscribe((data) => {
-      console.log("los insertamos desde el prioncipio0", data)
-    });*/
+    this.productService.insertAllProducts().subscribe();
   }
   title = 'DigitalChef';
 

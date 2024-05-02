@@ -1,13 +1,17 @@
-<?php declare(strict_types=1);
+<?php 
+
+declare(strict_types=1);
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 'on');
 date_default_timezone_set('Europe/Madrid');
 
-require '../Conexion/ConexionPdoEnv.php';
+require '../Conexion/ConexionPdo.php';
 
 define('XML', '../products.xml');
-$conexion = new ConexionPdoEnv();
+$conexion = new ConexionPdo();
 $pdo = $conexion::conectar();
 
 $xml = simplexml_load_file(XML);
