@@ -44,11 +44,12 @@ export class MenuComponent implements OnInit {
 
   MenuList: Product[] = [];
   addProductList(id: number) {
-    this.productService.getProduct(id).subscribe(
+     this.productService.getProduct(id).subscribe(
       (product: Product) => {
+        
         this.MenuList.push(product);
       }
     );
-    this.orderDetailService.insertOrderDetail(1).subscribe();
+    this.orderDetailService.insertOrderDetail(id, 1).subscribe();
   }
 }

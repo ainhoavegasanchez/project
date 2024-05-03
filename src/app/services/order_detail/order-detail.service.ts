@@ -14,20 +14,21 @@ export class OrderDetailService {
     private orderService: OrderService,
     private productService: ProductService
   ) { }
-  baseUrl = "http://vps-65482c69.vps.ovh.net/php/order";
+  baseUrl = "http://vps-65482c69.vps.ovh.net/php/orders";
 
-  insertOrderDetail(count: number) {
+  insertOrderDetail(id_product:number, count: number) {
     const order = this.orderService.OrderGet;
-    const product = this.productService.productGet;
-    console.log(order, product, count);
-    return this.http.post(`${this.baseUrl}/insertOrderDetail.php`, { product, order, count });
+    console.log(order,  count);
+    return this.http.post(`${this.baseUrl}/insertOrderDetail.php`, { id_product, order, count });
   }
 
 
-  getUser(user: any) {
-    const userReturn = this.http.post(`${this.baseUrl}/getUser.php`, JSON.stringify(user));
-    return userReturn;
+  getOrderDetail():any {
+    const order = this.orderService.OrderGet;
+    return this.http.get(`${this.baseUrl}/getDetailOrders?id=${order}.php`);
   };
+
+
 
 
   updateUser(id: number, pass: string): void {

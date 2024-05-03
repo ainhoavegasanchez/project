@@ -16,7 +16,7 @@ $params = json_decode($json);
 $stmt = $pdo->prepare("INSERT INTO DETALLE_PEDIDO (id_pedido, id_producto, cantidad) VALUES (:id_pedido, :id_producto, :cantidad)");
 $stmt->execute([
     ":id_pedido"=>$params->order->id,
-    ":id_producto"=>$params->product->id,
+    ":id_producto"=>$params->id_product,
     ":cantidad"=>$params->count
 ]);
 
